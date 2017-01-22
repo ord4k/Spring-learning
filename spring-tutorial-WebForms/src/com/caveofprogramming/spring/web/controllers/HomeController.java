@@ -13,4 +13,14 @@ public class HomeController {
 	public String showHome(Model model) {
 		return "home";
 	}
+	
+	@RequestMapping("/home")
+	public String showHome() {
+		return "home";
+	}
+	
+	@RequestMapping("/admin")
+	public String showAdmin() {
+		return "admin";
+	}
 }

@@ -1,14 +1,18 @@
 @CHARSET "UTF-8";
 
 <style type="text/css">
-.formtable {
-	width: 400px;
-	padding: 10px;
-	border: 1px dark solid blue;
 
+.formtable {
+	width: 600px;
+	padding: 10px;
+	border: 5px solid black;
 }
 
 input[type=text] {
+	width: 250px;
+
+}
+input[type=password] {
 	width: 250px;
 
 }
@@ -32,9 +36,27 @@ margin-left: 10px;
 	margin-left: 10px;
 	
 }
+.valid {
+	font-size: small;
+	color: green;
+	margin-left: 10px;
+	
+}
+
+p.error {
+	font-size: 12px;
+
+	
+}
 table.offers {
 	padding: 20px;
 	border: solid gray;
 }
+
+table.formtable {
+	padding: 20px;
+	border: solid gray;
+}
+
 
 </style>

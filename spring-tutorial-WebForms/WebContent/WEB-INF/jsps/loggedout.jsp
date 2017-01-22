@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>New offer created</title>
+<title>Insert title here</title>
 </head>
 <body>
-Offer created: <a href="${pageContext.request.contextPath}/offers">click here to go home</a>
+You are loggedout!. Sajonara!
 
+<p><a href="${pageContext.request.contextPath}">Go back to home page</a></p>
 </body>
 </html>

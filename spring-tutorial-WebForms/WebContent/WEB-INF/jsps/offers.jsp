@@ -7,7 +7,6 @@
 <html>
 <head>
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
