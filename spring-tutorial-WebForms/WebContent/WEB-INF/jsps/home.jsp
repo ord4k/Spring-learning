@@ -15,24 +15,10 @@
 <p><a href="${pageContext.request.contextPath}/offers">Show current offers</a></p>
 <p><a href="${pageContext.request.contextPath}/createoffer">Create offer</a></p>
 <p><a href="${pageContext.request.contextPath}/newaccount">Create account</a></p>
-<sec:authorize access="!isAuthenticated()">
-<p><a href="${pageContext.request.contextPath}/login">Login</a></p>
-</sec:authorize>
+
 <sec:authorize access="hasAuthority('ROLE_ADMIN')">
 <p><a href="${pageContext.request.contextPath}/admin">Admin panel</a></p>
 </sec:authorize>
-
-<!-- Loggout formula for Spring 4.x with csrf.token +including view control based on the current user's role -->
-<sec:authorize access="isAuthenticated()">
-<c:url var="logoutUrl" value="/logout"/>
-<form action="${logoutUrl}" method="post">
-<input type="submit" value="Log out"/> <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-</form>
-
-</sec:authorize>
-
-<!-- End of loggout -->
-
 
 
 
