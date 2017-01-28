@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
 
 
     
@@ -10,10 +11,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title><tiles:insertAttribute name="title"/></title>
 </head>
 <body>
-Hello from tiles there!
+<div>
+<tiles:insertAttribute name="header"></tiles:insertAttribute>
+<tiles:insertAttribute name="content"></tiles:insertAttribute>
+<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+</div>
 
 
 </body>

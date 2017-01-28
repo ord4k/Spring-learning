@@ -9,6 +9,10 @@
 	<context:component-scan base-package="com.caveofprogramming.spring.web.controllers">
 	</context:component-scan>
 	<mvc:annotation-driven></mvc:annotation-driven>
+
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+	</bean>
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
@@ -17,13 +21,11 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<!-- this is the JSP controler viewresolver,currently replaced by tilesConfigurer -->
-<!-- 	<bean id="jspsViewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsps/"></property>
-		<property name="suffix" value=".jsp"></property>
-	</bean> -->
+	<!-- <bean id="jspsViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="prefix" value="/WEB-INF/jsps/"></property> <property name="suffix" 
+		value=".jsp"></property> </bean> -->
 	<mvc:resources location="/resources/" mapping="/static/**" />
 
 	<bean id="messageSource"
@@ -32,9 +34,7 @@
 			value="com.caveofprogramming.spring.web.messages.messages">
 		</property>
 	</bean>
-	<bean id="tilesViewResolver"
-		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
-	</bean>
-	
+
+
 
 </beans>
