@@ -98,7 +98,7 @@
 			<tr>
 				<td class="label">Password:</td>
 				<td><sf:input class="control" path="password" name="password"
-						type="text" id="password" /><br />
+						type="password" id="password" /><br />
 					<div class="error">
 						<sf:errors path="password"></sf:errors>
 					</div></td>
@@ -106,7 +106,7 @@
 			<tr>
 				<td class="label">Confirm Password:</td>
 				<td><sf:input class="control" name="confirmpassword"
-						path="confirmpassword" type="text" id="confirmpassword" />
+						path="confirmpassword" type="password" id="confirmpassword" />
 					<div id="matchpassword"></div></td>
 			</tr>
 			<tr>

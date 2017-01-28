@@ -33,6 +33,10 @@
 				<td><input type='password' name='password' /></td>
 			</tr>
 			<tr>
+				<td>Remember me</td>
+				<td><input type='checkbox' name='remember-me' checked="checked"/></td>
+			</tr>
+			<tr>
 				<td colspan='2'><input name="submit" type="submit"
 					value="Login" /></td>
 			</tr>
