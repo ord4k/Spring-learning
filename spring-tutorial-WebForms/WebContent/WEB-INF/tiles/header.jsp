@@ -6,7 +6,7 @@
 <a class="title" href="<c:url  value='/'/>">Offers</a>
 
 <sec:authorize access="!isAuthenticated()">
-<a class= "login" href="${pageContext.request.contextPath}/login">Login</a></p>
+<p><a class= "login" href="${pageContext.request.contextPath}/login">Login</a></p>
 </sec:authorize>
 
 
