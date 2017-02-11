@@ -63,9 +63,18 @@ public class OfferDaoTest {
 		
 		List<Offer> offers = offersDao.getOffers();
 		
+		
 		assertEquals("Should be one offer in database", 1, offers.size());
 		
 		assertEquals("Offer retrieved should match offer created", offer, offers.get(0));
+		
+		List<Offer> secondList = offersDao.getOffers();
+		for (Offer current:secondList) {
+			Offer retrieved = offersDao.getOffer(current.getId());
+			
+			assertEquals("Offer by ID should match offer from the list", current, retrieved);
+		}
+		
 		
 		//Get the offer with ID filled in
 		offer = offers.get(0);

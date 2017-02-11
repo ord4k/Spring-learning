@@ -36,9 +36,10 @@ public class UserDaoTest {
 	@Before
 	public void init() {
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-
-		jdbc.execute("delete from users");
+		
 		jdbc.execute("delete from offers");
+		jdbc.execute("delete from users");
+	
 
 	}
 

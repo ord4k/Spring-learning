@@ -20,6 +20,9 @@ public class User {
 	private String email;
 	private boolean enabled = false;
 	private String authority;
+	
+	@NotBlank()
+	@Size(min = 2, max=60)
 	private String name;
 
 	@Override
