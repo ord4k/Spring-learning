@@ -26,31 +26,31 @@ public class UsersDao {
 
 	@Transactional
 	public boolean create(User user) {
-		
-		
 
 		MapSqlParameterSource params = new MapSqlParameterSource();
-		
+
 		params.addValue("username", user.getUsername());
 		params.addValue("password", passwordEncoder.encode(user.getPassword()));
 		params.addValue("email", user.getEmail());
 		params.addValue("enabled", user.isEnabled());
 		params.addValue("authority", user.getAuthority());
+		params.addValue("name", user.getName());
 
-		jdbc.update("insert into users (username, password, email, enabled) values (:username, :password, :email,:enabled)", params);
-
-		return jdbc.update("insert into authorities (username, authority) values (:username, :authority)", params) == 1;
+		return jdbc.update(
+				"insert into users (username, password, email, enabled, name, authority) values (:username, :password, :email, :enabled, :name, :authority)",
+				params) == 1;
 	}
 
-	public  boolean exists(String username) {
-		
+	public boolean exists(String username) {
+
 		return jdbc.queryForObject("select count(*) from users where username=:username",
-				new MapSqlParameterSource("username", username), Integer.class)>0;
+				new MapSqlParameterSource("username", username), Integer.class) > 0;
 	}
 
 	public List<User> getAllUsers() {
-		
-		return jdbc.query("select * from users, authorities where users.username=authorities.username",BeanPropertyRowMapper.newInstance(User.class));
+
+		return jdbc.query("select * from users",
+				BeanPropertyRowMapper.newInstance(User.class));
 	}
 
 }
