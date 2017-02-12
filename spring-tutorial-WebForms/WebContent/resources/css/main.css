@@ -51,7 +51,12 @@ p.error {
 table.offers {
 	padding: 20px;
 	border: solid gray;
+	width: 600px;
 }
+td {
+  	padding: 5px 0;
+	}
+
 
 table.formtable {
 	padding: 20px;
