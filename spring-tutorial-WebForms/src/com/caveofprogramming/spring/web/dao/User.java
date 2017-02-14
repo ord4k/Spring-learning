@@ -1,28 +1,41 @@
 package com.caveofprogramming.spring.web.dao;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+@Entity
+@Table(name="users")
 public class User {
 
 	@NotBlank()
 	@Size(min = 4)
+	@Id
+	@Column(name="username")
 	private String username;
 
 	@NotBlank()
 	@Size(min = 4, max = 16)
+	@Column(name="password")
 	private String password;
 
 	@Email
 	@NotBlank()
+	@Column(name="email")
 	private String email;
+	@Column(name="enabled")
 	private boolean enabled = false;
+	@Column(name="authority")
 	private String authority;
 	
 	@NotBlank()
 	@Size(min = 2, max=60)
+	@Column(name="name")
 	private String name;
 
 	@Override
@@ -39,7 +52,7 @@ public class User {
 		this.name = name;
 	}
 
-	private String confirmpassword;
+
 
 	public User() {
 
@@ -52,7 +65,7 @@ public class User {
 
 		this.username = username;
 		this.password = password;
-		this.confirmpassword = confirmpassword;
+
 		this.enabled = enabled;
 		this.email = email;
 		this.authority = authority;
@@ -60,13 +73,9 @@ public class User {
 
 	}
 
-	public String getConfirmpassword() {
-		return confirmpassword;
-	}
 
-	public void setConfirmpassword(String confirmpassword) {
-		this.confirmpassword = confirmpassword;
-	}
+
+
 
 	public String getUsername() {
 		return username;

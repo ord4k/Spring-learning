@@ -95,6 +95,9 @@ form.logout {
 	right: 10px;
 	color: white;
 }
+input.delete {
+	border: 1px solid red;
+}
 
 
 </style>
