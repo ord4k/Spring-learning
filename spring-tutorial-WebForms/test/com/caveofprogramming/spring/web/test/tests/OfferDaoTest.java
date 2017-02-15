@@ -47,13 +47,13 @@ public class OfferDaoTest {
 	@Test
 	public void testCreateOffer() {
 
-		User user = new User("michal", "haslo", "haslo", "michal@op.pl", true, "user", "user");
+		User user = new User("michal", "michal o", "haslo", "michal@op.pl", true, "user");
 
-		assertTrue("User creation should return true", usersDao.create(user));
+		usersDao.create(user);
 
 		Offer offer = new Offer("This is test offer", user);
 
-		assertTrue("Offer creation should return true", offersDao.create(offer));
+		offersDao.create(offer);
 
 		List<Offer> offers = offersDao.getOffers(user.getUsername());
 

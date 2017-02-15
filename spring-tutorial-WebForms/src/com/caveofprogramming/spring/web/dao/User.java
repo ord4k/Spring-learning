@@ -60,18 +60,20 @@ public class User {
 	
 
 
-	public User(String username, String password, String confirmpassword, String email, boolean enabled,
-			String authority, String name) {
-
+	public User(String name, String username, String password, String email, boolean enabled,
+			String authority) {
+		
+		this.name = name;
 		this.username = username;
 		this.password = password;
-
-		this.enabled = enabled;
 		this.email = email;
+		this.enabled = enabled;
 		this.authority = authority;
-		this.name = name;
+		
 
 	}
+
+
 
 
 
