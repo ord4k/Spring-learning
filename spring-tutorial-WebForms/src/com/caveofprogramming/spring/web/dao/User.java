@@ -9,25 +9,25 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.caveofprogramming.spring.web.validation.ValidEmail;
+
 
 @Entity
 @Table(name = "users")
 public class User {
 
-	@NotBlank(groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
-	@Size(min = 4, groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
+	@NotBlank(groups ={PersistenceValidationGroup.class, FormValidationGroup.class})
+	@Size(min = 4, groups ={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Id
 	@Column(name = "username")
 	private String username;
 
-	@NotBlank(groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
+	@NotBlank(groups ={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Size(min = 4, max = 16, groups = {FormValidationGroup.class })
 	@Column(name = "password")
 	private String password;
 
-	@ValidEmail(groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
-	@NotBlank(groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
+	@Email(groups = {PersistenceValidationGroup.class, FormValidationGroup.class })
+	@NotBlank(groups = {PersistenceValidationGroup.class, FormValidationGroup.class })
 	@Column(name = "email")
 	private String email;
 
@@ -37,8 +37,8 @@ public class User {
 	@Column(name = "authority")
 	private String authority;
 
-	@NotBlank(groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
-	@Size(min = 2, max = 60, groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
+	@NotBlank(groups = {PersistenceValidationGroup.class, FormValidationGroup.class })
+	@Size(min = 2, max = 60, groups = {PersistenceValidationGroup.class, FormValidationGroup.class })
 	@Column(name = "name")
 	private String name;
 

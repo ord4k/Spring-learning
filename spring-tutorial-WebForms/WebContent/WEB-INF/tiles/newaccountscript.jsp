@@ -6,8 +6,8 @@
 <script type="text/javascript">
 	function onLoad() {
 
-		$("#password").keyup(checkPasswordMatch);
-		$("#confirmpassword").keyup(checkPasswordMatch);
+		$("#password").keyup(checkPasswordsMatch);
+		$("#confirmpassword").keyup(checkPasswordsMatch);
 		$("#details").submit(canSubmit);
 	}
 
@@ -17,14 +17,14 @@
 		var confirmpassword = $("#confirmpassword").val();
 
 		if (password != confirmpassword) {
-			//alert("passwords do not match]!")
+			alert("<fmt:message key='UnmatchedPasswords.user.password' />")
 			return false;
 		} else {
 			return true;
 		}
 	}
 
-	function checkPasswordMatch() {
+	function checkPasswordsMatch() {
 
 		var password = $("#password").val();
 		var confirmpassword = $("#confirmpassword").val();
@@ -34,13 +34,12 @@
 			if (password == confirmpassword) {
 
 				$("#matchpassword").text(
-						"<fmt:message key='MatchedPassword.user.password'/>")
+						"<fmt:message key='MatchedPasswords.user.password'/>")
 				$("#matchpassword").addClass("valid")
 				$("#matchpassword").removeClass("error")
 
 			} else {
-				$("#matchpassword").text(
-						"<fmt:message key='UnmatchedPassword.user.password'/>")
+				$("#matchpassword").text("<fmt:message key='UnmatchedPasswords.user.password'/>")
 				$("#matchpassword").addClass("error")
 				$("#matchpassword").removeClass("valid")
 

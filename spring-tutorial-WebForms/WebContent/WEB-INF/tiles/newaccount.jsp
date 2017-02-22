@@ -1,10 +1,12 @@
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
-
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+	pageEncoding="US-ASCII"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <h2>Create a new account</h2>
 
 <sf:form id="details" method="post"
 	action="${pageContext.request.contextPath}/createaccount"
-	commandName="user">
+	modelAttribute="user">
 
 	<table class="formtable">
 		<tr>
@@ -33,7 +35,7 @@
 		</tr>
 		<tr>
 			<td class="label">Confirm Password:</td>
-			<td><input class="control" name="confirmpassword"
+			<td><input class="control" name="confirmpassword" id="confirmpassword"
 					 type="password" />
 				<div id="matchpassword"></div></td>
 		</tr>
@@ -42,7 +44,7 @@
 			<td><sf:input class="control" path="name" name="name"
 					type="text" /><br />
 				<div class="error">
-					<sf:errors path="username"></sf:errors>
+					<sf:errors path="name"></sf:errors>
 				</div></td>
 		</tr>
 		<tr>

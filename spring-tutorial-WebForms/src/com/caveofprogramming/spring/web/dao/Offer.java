@@ -1,9 +1,7 @@
 package com.caveofprogramming.spring.web.dao;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-import com.caveofprogramming.spring.web.validation.ValidEmail;
+import javax.validation.constraints.Size;
 
 public class Offer {
 	private int id;

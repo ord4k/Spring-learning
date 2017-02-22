@@ -2,7 +2,7 @@ package com.caveofprogramming.spring.web.controllers;
 
 import java.util.List;
 
-import javax.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -63,14 +63,13 @@ public class LoginController {
 		return "newaccount";
 	}
 
-	@RequestMapping(value = "/createaccount", method = RequestMethod.POST)
-	public String doCreate(@Validated(FormValidationGroup.class) User user, BindingResult result) {
-
+	@RequestMapping(value ="/createaccount", method = RequestMethod.POST)
+	public String createAccount(@Validated(FormValidationGroup.class) User user, BindingResult result) {
+		System.out.println("say something");
 		if (result.hasErrors()) {
 			return "newaccount";
 		}
-		
-		
+
 		user.setAuthority("ROLE_USER");
 		user.setEnabled(true);
 		
