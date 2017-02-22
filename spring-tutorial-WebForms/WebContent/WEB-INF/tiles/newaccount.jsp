@@ -33,8 +33,8 @@
 		</tr>
 		<tr>
 			<td class="label">Confirm Password:</td>
-			<td><sf:input class="control" name="confirmpassword"
-					path="confirmpassword" type="password" id="confirmpassword" />
+			<td><input class="control" name="confirmpassword"
+					 type="password" />
 				<div id="matchpassword"></div></td>
 		</tr>
 			<tr>

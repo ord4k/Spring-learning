@@ -35,20 +35,22 @@ public class UsersDao {
 
 	@Transactional
 	public void create(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		session().save(user);
-	
-		
-		
-		/*	MapSqlParameterSource params = new MapSqlParameterSource();
+
+		/*	
+		 * Before implementing hibernate
+		 * 
+		 * MapSqlParameterSource params = new MapSqlParameterSource();
 
 		params.addValue("username", user.getUsername());
 		params.addValue("password", passwordEncoder.encode(user.getPassword()));
 		params.addValue("email", user.getEmail());
 		params.addValue("enabled", user.isEnabled());
 		params.addValue("authority", user.getAuthority());
-		params.addValue("name", user.getName());*/
+		params.addValue("name", user.getName());
 
-	/*	return jdbc.update(
+		return jdbc.update(
 				"insert into users (username, password, email, enabled, name, authority) values (:username, :password, :email, :enabled, :name, :authority)",
 				params) == 1;*/
 		

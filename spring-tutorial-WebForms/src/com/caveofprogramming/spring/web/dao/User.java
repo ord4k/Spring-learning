@@ -9,33 +9,37 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.caveofprogramming.spring.web.validation.ValidEmail;
+
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
-	@NotBlank()
-	@Size(min = 4)
+	@NotBlank(groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
+	@Size(min = 4, groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
 	@Id
-	@Column(name="username")
+	@Column(name = "username")
 	private String username;
 
-	@NotBlank()
-	@Size(min = 4, max = 16)
-	@Column(name="password")
+	@NotBlank(groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
+	@Size(min = 4, max = 16, groups = {FormValidationGroup.class })
+	@Column(name = "password")
 	private String password;
 
-	@Email
-	@NotBlank()
-	@Column(name="email")
+	@ValidEmail(groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
+	@NotBlank(groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
+	@Column(name = "email")
 	private String email;
-	@Column(name="enabled")
+
+	@Column(name = "enabled")
 	private boolean enabled = false;
-	@Column(name="authority")
+
+	@Column(name = "authority")
 	private String authority;
-	
-	@NotBlank()
-	@Size(min = 2, max=60)
-	@Column(name="name")
+
+	@NotBlank(groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
+	@Size(min = 2, max = 60, groups = { PersistanceValidationGroup.class, FormValidationGroup.class })
+	@Column(name = "name")
 	private String name;
 
 	@Override
@@ -52,32 +56,20 @@ public class User {
 		this.name = name;
 	}
 
-
-
 	public User() {
 
 	}
-	
 
+	public User(String name, String username, String password, String email, boolean enabled, String authority) {
 
-	public User(String name, String username, String password, String email, boolean enabled,
-			String authority) {
-		
 		this.name = name;
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.enabled = enabled;
 		this.authority = authority;
-		
 
 	}
-
-
-
-
-
-
 
 	public String getUsername() {
 		return username;
@@ -164,7 +156,5 @@ public class User {
 			return false;
 		return true;
 	}
-	
-	
 
 }

@@ -10,8 +10,8 @@
 	<context:annotation-config></context:annotation-config>
 	<context:component-scan base-package="com.caveofprogramming.spring.web.dao">
 	</context:component-scan>
-	
-	
+
+
 	<!-- Production dataBase -->
 	<beans profile="production">
 
@@ -23,11 +23,26 @@
 			<property name="dataSource" ref="dataSource"></property>
 		</bean>
 		<tx:annotation-driven />
-	</beans>
-	
 
-	
-	
-	
-	
+		<bean id="sessionFactory"
+			class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+			<property name="dataSource" ref="dataSource"></property>
+			<property name="hibernateProperties">
+				<props>
+					<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				</props>
+			</property>
+			<property name="packagesToScan">
+				<list>
+					<value>com.caveofprogramming.spring.web.dao</value>
+				</list>
+			</property>
+		</bean>
+	</beans>
+
+
+
+
+
+
 </beans>
