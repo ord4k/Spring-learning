@@ -25,9 +25,13 @@
 			<property name="hibernateProperties">
 				<props>
 					<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-					<prop key="javax.persistence.validation.group.pre-persist">com.caveofprogramming.spring.web.dao.PersistenceValidationGroup</prop>
-					<prop key="javax.persistence.validation.group.pre.update">com.caveofprogramming.spring.web.dao.PersistenceValidationGroup</prop>
-					<prop key="javax.persistence.validation.group.pre-persist">com.caveofprogramming.spring.web.dao.PersistenceValidationGroup</prop>
+					<prop key="javax.persistence.validation.group.pre-persist">com.caveofprogramming.spring.web.dao.PersistenceValidationGroup
+					</prop>
+					<prop key="javax.persistence.validation.group.pre.update">com.caveofprogramming.spring.web.dao.PersistenceValidationGroup
+					</prop>
+					<prop key="javax.persistence.validation.group.pre-persist">com.caveofprogramming.spring.web.dao.PersistenceValidationGroup
+					</prop>
+
 				</props>
 			</property>
 			<property name="packagesToScan">
@@ -35,6 +39,10 @@
 					<value>com.caveofprogramming.spring.web.dao</value>
 				</list>
 			</property>
+
+		</bean>
+		<bean id="exceptionTranslator"
+			class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
 		</bean>
 		<tx:annotation-driven transaction-manager="transactionManager" />
 		<bean id="transactionManager"
@@ -43,4 +51,5 @@
 		</bean>
 
 	</beans>
+
 </beans>

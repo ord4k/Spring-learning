@@ -46,7 +46,15 @@ public class UserDaoTest {
 	
 	
 	
-
+	@Test
+	public void testExist() {
+		usersDao.create(user1);
+		usersDao.create(user2);
+		usersDao.create(user3);
+		
+		assertTrue("User should exist", usersDao.exists(user1.getUsername()));
+		assertFalse("User should not exist", usersDao.exists("userDupa"));
+	}
 	
 	@Test
 	public void testCreateRetrieve() {
@@ -56,6 +64,7 @@ public class UserDaoTest {
 		List<User> users1 = usersDao.getAllUsers();
 		
 		assertEquals("One user should be created and retrieved", 1, users1.size());
+		assertFalse("User should not exist", usersDao.exists("userDupa"));
 		
 		assertEquals("Inserted user should match retrieved", user1, users1.get(0));
 	
