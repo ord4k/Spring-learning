@@ -3,8 +3,10 @@ package com.caveofprogramming.spring.web.dao;
 import java.util.List;
 import javax.sql.DataSource;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -34,10 +36,17 @@ public class OffersDao {
 		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Offer> getOffers() {
 
-		return jdbc.query("select * from offers, users where offers.username=users.username and users.enabled=true",
-				new OfferRowMapper());
+		Criteria crit = session().createCriteria(Offer.class);
+		crit.createAlias("user","u").add(Restrictions.eq("u.enabled",true));
+		
+		return  crit.list();
+	
+		/*in the old way
+		 * 	return jdbc.query("select * from offers, users where offers.username=users.username and users.enabled=true",
+				new OfferRowMapper());*/
 	}
 	
 	public List<Offer> getOffers(String username) {
