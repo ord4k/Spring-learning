@@ -2,6 +2,9 @@ package com.caveofprogramming.spring.web.dao;
 
 import java.util.List;
 import javax.sql.DataSource;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -19,7 +22,12 @@ public class OffersDao {
 
 	private NamedParameterJdbcTemplate jdbc;
 	
+	@Autowired
+	private SessionFactory sessionFactory;
 
+	public Session session() {
+		return sessionFactory.getCurrentSession();
+	}
 
 	@Autowired
 	public void setDataSource(DataSource jdbc) {
@@ -44,11 +52,10 @@ public class OffersDao {
 		return jdbc.update("update offers set text=:text where id=:id", params) == 1;
 	}
 
-	public boolean create(Offer offer) {
+	public void create(Offer offer) {
 
-		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
+		session().save(offer);
 
-		return jdbc.update("insert into offers (username, text) values (:username, :text)", params) == 1;
 	}
 
 	@Transactional
