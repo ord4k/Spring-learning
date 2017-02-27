@@ -35,7 +35,7 @@ public class Offer {
 
 	}
 	
-	public Offer(String text, User user) {
+	public Offer(User user, String text) {
 		this.text = text;
 		this.user = user;
 
