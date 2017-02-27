@@ -1,14 +1,31 @@
 package com.caveofprogramming.spring.web.dao;
 
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+@Entity
+@Table(name="offers")
 public class Offer {
+	
+	@Id
+	@GeneratedValue
 	private int id;
 
+	
+	//Column annotation needed only when instance variable comes from different column name in database
 	@Size(min = 20, max = 255, message = "Text must be between 20 and 255 charaters")
+	@Column(name="text")
 	private String text;
 
+	@ManyToOne
+	@JoinColumn(name="username")
 	private User user;
 
 	public Offer(int id, String text, User user) {
