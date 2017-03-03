@@ -61,14 +61,9 @@ public class OffersDao {
 		return  crit.list();
 	}
 
-	public void update(Offer offer) {
-		session().update(offer);
 
-		
-	}
 
-	public void create(Offer offer) {
-
+	public void saveOrUpdate(Offer offer) {
 		session().save(offer);
 
 	}
