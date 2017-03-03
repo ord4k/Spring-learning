@@ -57,36 +57,31 @@ public class OfferDaoTest {
 
 	}
 
-	
 	@Test
 	public void testGetUsername() {
 		usersDao.create(user1);
 		usersDao.create(user2);
 		usersDao.create(user3);
 		usersDao.create(user4);
-		
+
 		offersDao.saveOrUpdate(offer2);
 		offersDao.saveOrUpdate(offer3);
 		offersDao.saveOrUpdate(offer4);
 		offersDao.saveOrUpdate(offer5);
 		offersDao.saveOrUpdate(offer6);
 		offersDao.saveOrUpdate(offer7);
-		
+
 		List<Offer> offers1 = offersDao.getOffers(user3.getUsername());
 		assertEquals("Should be three offers", 3, offers1.size());
-		
+
 		List<Offer> offers2 = offersDao.getOffers("zess");
 		assertEquals("Should be zero offers", 0, offers2.size());
-		
+
 		List<Offer> offers3 = offersDao.getOffers(user2.getUsername());
 		assertEquals("Should be three offers", 1, offers3.size());
 
 	}
-	
-	
-	
-	
-	
+
 	@Test
 	public void testCreate() {
 		usersDao.create(user1);
@@ -110,6 +105,32 @@ public class OfferDaoTest {
 		assertEquals("Should be six for enabled true", 6, offers.size());
 
 	}
+	
+	@Test
+	public void testDelete() {
+		usersDao.create(user1);
+		usersDao.create(user2);
+		usersDao.create(user3);
+		usersDao.create(user4);
+
+		offersDao.saveOrUpdate(offer2);
+		offersDao.saveOrUpdate(offer3);
+		offersDao.saveOrUpdate(offer4);
+		offersDao.saveOrUpdate(offer5);
+		offersDao.saveOrUpdate(offer6);
+		offersDao.saveOrUpdate(offer7);
+		
+		
+		
+		Offer retrieved1 = offersDao.getOffer(offer2.getId());
+		assertNotNull("Offer with id:" +retrieved1 + "should be not null",retrieved1);
+		
+		offersDao.delete(offer2.getId());
+		Offer retrieved2 = offersDao.getOffer(offer2.getId());
+		assertNull("Offer with id:" +retrieved2 + "should be null, deleted",retrieved2);
+		
+	}
+
 	@Test
 	public void testSaveOrUpdate() {
 		usersDao.create(user1);
@@ -123,15 +144,14 @@ public class OfferDaoTest {
 		offersDao.saveOrUpdate(offer5);
 		offersDao.saveOrUpdate(offer6);
 		offersDao.saveOrUpdate(offer7);
-		
+
 		offer3.setText("This is updatefd offer3");
 		offersDao.saveOrUpdate(offer3);
-		
+
 		Offer retrieveved = offersDao.getOffer(offer3.getId());
-		
+
 		assertEquals("Retrieved offer should be updated", offer3, retrieveved);
 
-		
 	}
 
 	@Test
@@ -154,11 +174,6 @@ public class OfferDaoTest {
 		// Check if offer text is saved correctly
 		offer.setText("Update for test purpose");
 		assertEquals("Offer text should be the same", "Update for test purpose", offer.getText());
-
-	
-		
-		Offer updated = offersDao.getOffer(offer.getId());
-
 
 		Offer offer3 = new Offer(user, "This is test offer3");
 
