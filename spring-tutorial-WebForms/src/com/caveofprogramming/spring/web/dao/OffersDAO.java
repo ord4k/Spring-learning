@@ -70,33 +70,32 @@ public class OffersDao {
 	}
 
 	public boolean delete(int id) {
-		
-		//this is not SQL query, this is hibernate SQL language!!
+
+		// this is not SQL query, this is hibernate SQL language!!
 		Query query = session().createQuery("delete from Offer where id=:id");
-		query.setLong("id",id);
+		query.setLong("id", id);
 		return query.executeUpdate() == 1;
-		
 
 	}
 
 	public Offer getOffer(int id) {
-		//with this approach the method returns null if offer doesnt exist
+		// with this approach the method returns null if offer doesnt exist
 		Criteria crit = session().createCriteria(Offer.class);
 		crit.createAlias("user", "u");
 
 		crit.add(Restrictions.eq("u.enabled", true));
 		crit.add(Restrictions.idEq(id));
-		
-		return (Offer)crit.uniqueResult();
-		
-		
-		/*jdbc implementation
-		MapSqlParameterSource params = new MapSqlParameterSource();
-		params.addValue("id", id);
 
-		return jdbc.queryForObject(
-				"select * from offers, users where offers.username=users.username and users.enabled=true and id=:id",
-				params, new OfferRowMapper());*/
+		return (Offer) crit.uniqueResult();
+
+		/*
+		 * jdbc implementation MapSqlParameterSource params = new
+		 * MapSqlParameterSource(); params.addValue("id", id);
+		 * 
+		 * return jdbc.queryForObject(
+		 * "select * from offers, users where offers.username=users.username and users.enabled=true and id=:id"
+		 * , params, new OfferRowMapper());
+		 */
 
 	}
 

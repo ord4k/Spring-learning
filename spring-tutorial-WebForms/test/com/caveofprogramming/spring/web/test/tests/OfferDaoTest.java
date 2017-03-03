@@ -149,53 +149,33 @@ public class OfferDaoTest {
 		offersDao.saveOrUpdate(offer3);
 
 		Offer retrieveved = offersDao.getOffer(offer3.getId());
-
 		assertEquals("Retrieved offer should be updated", offer3, retrieveved);
 
 	}
-
 	@Test
-	public void testCreateOffer() {
+	public void testGetOfferById() {
+		
+		usersDao.create(user1);
+		usersDao.create(user2);
+		usersDao.create(user3);
+		usersDao.create(user4);
 
-		User user = new User("michal", "michal o", "haslo", "michal@op.pl", true, "user");
-
-		usersDao.create(user);
-
-		Offer offer = new Offer(user, "This is test offer");
-
-		offersDao.saveOrUpdate(offer);
-
-		List<Offer> offers = offersDao.getOffers(user.getUsername());
-
-		assertEquals("Should be one offer in database", 1, offers.size());
-
-		assertEquals("Offer retrieved should match offer created", offer, offers.get(0));
-
-		// Check if offer text is saved correctly
-		offer.setText("Update for test purpose");
-		assertEquals("Offer text should be the same", "Update for test purpose", offer.getText());
-
-		Offer offer3 = new Offer(user, "This is test offer3");
-
+		offersDao.saveOrUpdate(offer1);
 		offersDao.saveOrUpdate(offer3);
-
-		List<Offer> userOffers = offersDao.getOffers(user.getUsername());
-
-		assertEquals("Should be two offers", 2, userOffers.size());
-
-		List<Offer> secondList = offersDao.getOffers();
-		for (Offer current : secondList) {
-			Offer retrieved = offersDao.getOffer(current.getId());
-
-			assertEquals("Offer by ID should match offer from the list", current, retrieved);
-		}
-
-		offersDao.delete(offer.getId());
-
-		List<Offer> finalList = offersDao.getOffers();
-
-		assertEquals("Offers lists should containt one offer", 1, finalList.size());
-
+		offersDao.saveOrUpdate(offer4);
+		offersDao.saveOrUpdate(offer5);
+		offersDao.saveOrUpdate(offer6);
+		offersDao.saveOrUpdate(offer7);
+		
+		Offer retrieved1 = offersDao.getOffer(offer1.getId());
+		assertEquals("OFfers should match", offer1,retrieved1);
+		
+		Offer retrieved2 = offersDao.getOffer(offer7.getId());
+		assertNull("Offer should not exist for not enabled user: "+user4.getUsername(), retrieved2);
+		
+		
 	}
+
+	
 
 }
