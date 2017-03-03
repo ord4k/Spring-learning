@@ -57,6 +57,36 @@ public class OfferDaoTest {
 
 	}
 
+	
+	@Test
+	public void testGetUsername() {
+		usersDao.create(user1);
+		usersDao.create(user2);
+		usersDao.create(user3);
+		usersDao.create(user4);
+		
+		offersDao.create(offer2);
+		offersDao.create(offer3);
+		offersDao.create(offer4);
+		offersDao.create(offer5);
+		offersDao.create(offer6);
+		offersDao.create(offer7);
+		
+		List<Offer> offers1 = offersDao.getOffers(user3.getUsername());
+		assertEquals("Should be three offers", 3, offers1.size());
+		
+		List<Offer> offers2 = offersDao.getOffers("zess");
+		assertEquals("Should be zero offers", 0, offers2.size());
+		
+		List<Offer> offers3 = offersDao.getOffers(user2.getUsername());
+		assertEquals("Should be three offers", 1, offers3.size());
+
+	}
+	
+	
+	
+	
+	
 	@Test
 	public void testCreate() {
 		usersDao.create(user1);
@@ -102,15 +132,17 @@ public class OfferDaoTest {
 		offer = offers.get(0);
 
 		offer.setText("Update for test purpose");
-		assertTrue("Offer update should return true", offersDao.update(offer));
+		offersDao.update(offer);
+		List<Offer> offer2 = offersDao.getOffers();
+		assertEquals("Offer update should return true", offer,offer2.get(0));
 
 		Offer updated = offersDao.getOffer(offer.getId());
 
 		assertEquals("Updated offer should match retrieved updated offer", offer, updated);
 
-		Offer offer2 = new Offer(user, "This is test offer2");
+		Offer offer3 = new Offer(user, "This is test offer3");
 
-		offersDao.create(offer2);
+		offersDao.create(offer3);
 
 		List<Offer> userOffers = offersDao.getOffers();
 

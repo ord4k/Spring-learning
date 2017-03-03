@@ -61,10 +61,10 @@ public class OffersDao {
 		return  crit.list();
 	}
 
-	public boolean update(Offer offer) {
-		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
+	public void update(Offer offer) {
+		session().update(offer);
 
-		return jdbc.update("update offers set text=:text where id=:id", params) == 1;
+		
 	}
 
 	public void create(Offer offer) {
