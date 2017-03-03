@@ -49,10 +49,16 @@ public class OffersDao {
 				new OfferRowMapper());*/
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Offer> getOffers(String username) {
 
-		return jdbc.query("select * from offers, users where offers.username=users.username and users.enabled=true and offers.username=:username",
-				new MapSqlParameterSource("username",username),new OfferRowMapper());
+		Criteria crit = session().createCriteria(Offer.class);
+		crit.createAlias("user","u");
+		
+		crit.add(Restrictions.eq("u.enabled",true));
+		crit.add(Restrictions.eq("u.username",username));
+		
+		return  crit.list();
 	}
 
 	public boolean update(Offer offer) {
@@ -67,13 +73,7 @@ public class OffersDao {
 
 	}
 
-	@Transactional
-	public int[] create(List<Offer> offers) {
-
-		SqlParameterSource[] params = SqlParameterSourceUtils.createBatch(offers.toArray());
-
-		return jdbc.batchUpdate("insert into offers (username, text) values (:username, :text)", params);
-	}
+	
 
 	public boolean delete(int id) {
 		MapSqlParameterSource params = new MapSqlParameterSource("id", id);
