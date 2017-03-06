@@ -3,7 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	<display-name>spring-tutorial-50</display-name>
+	<display-name>Offer_Service</display-name>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
@@ -23,6 +23,7 @@
 		<servlet-name>offers</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
 	<description>Spring Database</description>
 	<resource-ref>
 		<description>DB Connection</description>
