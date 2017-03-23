@@ -2,12 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	default-autowire-candidates="destroy" default-destroy-method="init"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	
 
 	<bean id="person" class="com.test.test.Person" scope="singleton"
-		destroy-method="onDestroy" factory-method="getInstance"
-		init-method="onCreate">
+		destroy-method="onDestroy" factory-method="getInstance" init-method="onCreate">
 		<constructor-arg value="17" name="id">
 		</constructor-arg>
 		<constructor-arg value="Emily" name="name">
@@ -15,11 +19,12 @@
 		<property name="taxId" value="23">
 		</property>
 		<property name="address" ref="address"></property>
+		<property name="number" ref="number">
+		</property>
 	</bean>
 
 	<bean id="person2" class="com.test.test.Person" scope="singleton"
-		destroy-method="onDestroy" factory-method="createPerson"
-		factory-bean="personfactory">
+		destroy-method="onDestroy" factory-method="createPerson" factory-bean="personfactory">
 		<constructor-arg value="00012343" name="id">
 		</constructor-arg>
 		<constructor-arg value="Michal" name="name">
@@ -29,13 +34,19 @@
 		<property name="address" ref="address"></property>
 	</bean>
 
+	<bean id="number" class="com.test.test.Number">
+		<property name="randomNumber" value="#{ T(java.lang.Math).random() * 100.0 }" />
+	</bean>
+
 
 	<bean id="address" class="com.test.test.Address">
 		<constructor-arg name="street" value="Dywizjonu 303"></constructor-arg>
 		<constructor-arg name="postcode" value="07-410"></constructor-arg>
 	</bean>
-	<bean id="address2" class="com.test.test.Address" p:street="Pamieci narodowej 16" p:postcode="07410">
-	
+	<bean id="address2" class="com.test.test.Address" p:street="Pamieci narodowej 16"
+		p:postcode="07410">
+
 	</bean>
 	<bean id="personfactory" class="com.test.test.PersonFactory"></bean>
+	
 </beans>

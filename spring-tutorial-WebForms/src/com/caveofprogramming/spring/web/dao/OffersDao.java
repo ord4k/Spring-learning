@@ -13,8 +13,10 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 @Repository
+@Validated
 @Component("offersDao")
 @Transactional
 public class OffersDao {
@@ -61,7 +63,8 @@ public class OffersDao {
 	}
 
 	public void saveOrUpdate(Offer offer) {
-		session().save(offer);
+		session().saveOrUpdate(offer);
+		
 
 	}
 

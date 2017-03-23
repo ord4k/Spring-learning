@@ -20,7 +20,7 @@ public class Offer {
 
 	
 	//Column annotation needed only when instance variable comes from different column name in database
-	@Size(min = 20, max = 255, message = "Text must be between 20 and 255 charaters")
+	@Size(min = 20, max = 255, message = "Text must be between 20 and 255 charaters",groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Column(name="text")
 	private String text;
 
