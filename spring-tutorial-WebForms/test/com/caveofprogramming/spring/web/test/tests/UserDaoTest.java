@@ -15,6 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.caveofprogramming.spring.web.dao.MessagesDao;
 import com.caveofprogramming.spring.web.dao.User;
 import com.caveofprogramming.spring.web.dao.UsersDao;
 
@@ -27,6 +28,9 @@ public class UserDaoTest {
 
 	@Autowired
 	private UsersDao usersDao;
+	
+	@Autowired
+	private MessagesDao messagesDao;
 
 	@Before
 	public void init() {

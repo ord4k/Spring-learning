@@ -14,6 +14,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.caveofprogramming.spring.web.dao.MessagesDao;
 import com.caveofprogramming.spring.web.dao.Offer;
 import com.caveofprogramming.spring.web.dao.OffersDao;
 import com.caveofprogramming.spring.web.dao.User;
@@ -31,6 +33,9 @@ public class OfferDaoTest {
 
 	@Autowired
 	private UsersDao usersDao;
+	
+	@Autowired
+	private MessagesDao messagesDao;
 
 	@Autowired
 	private DataSource dataSource;

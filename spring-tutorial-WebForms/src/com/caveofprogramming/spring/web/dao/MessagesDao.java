@@ -16,9 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 @Repository
-@Validated
-@Component("messagesDao")
 @Transactional
+@Component("messagesDao")
 public class MessagesDao {
 
 	private NamedParameterJdbcTemplate jdbc;

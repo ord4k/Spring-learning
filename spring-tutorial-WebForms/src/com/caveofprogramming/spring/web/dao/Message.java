@@ -1,12 +1,17 @@
 package com.caveofprogramming.spring.web.dao;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name="messages")
 public class Message {
+	
+	@Id
+	@GeneratedValue
 	private int id;
 	private String subject;
 	private String content;
