@@ -52,5 +52,6 @@
 	</webflow-config:flow-executor>
 	<bean id="flowHandlerAdaptor"
 		class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+	<property name="flowExecutor" ref="flowExecutor"></property>
 	</bean>
 </beans>
