@@ -14,6 +14,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.caveofprogramming.spring.web.dao.Message;
+import com.caveofprogramming.spring.web.dao.MessagesDao;
 import com.caveofprogramming.spring.web.dao.Offer;
 import com.caveofprogramming.spring.web.dao.OffersDao;
 import com.caveofprogramming.spring.web.dao.User;
@@ -24,13 +27,16 @@ import com.caveofprogramming.spring.web.dao.UsersDao;
 		"classpath:com/caveofprogramming/spring/web/config/security-context.xml",
 		"classpath:com/caveofprogramming/spring/web/test/config/datasource.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
-public class OfferDaoTest {
+public class MessageDaoTest {
 
 	@Autowired
 	private OffersDao offersDao;
 
 	@Autowired
 	private UsersDao usersDao;
+	
+	@Autowired
+	private MessagesDao messagesDao;
 
 	@Autowired
 	private DataSource dataSource;
@@ -108,75 +114,16 @@ public class OfferDaoTest {
 	}
 	
 	@Test
-	public void testDelete() {
+	public void testSave() {
 		usersDao.create(user1);
 		usersDao.create(user2);
 		usersDao.create(user3);
 		usersDao.create(user4);
 
-		offersDao.saveOrUpdate(offer2);
-		offersDao.saveOrUpdate(offer3);
-		offersDao.saveOrUpdate(offer4);
-		offersDao.saveOrUpdate(offer5);
-		offersDao.saveOrUpdate(offer6);
-		offersDao.saveOrUpdate(offer7);
-		
-		
-		
-		Offer retrieved1 = offersDao.getOffer(offer2.getId());
-		assertNotNull("Offer with id:" +retrieved1 + "should be not null",retrieved1);
-		
-		offersDao.delete(offer2.getId());
-		Offer retrieved2 = offersDao.getOffer(offer2.getId());
-		assertNull("Offer with id:" +retrieved2 + "should be null, deleted",retrieved2);
-		
-	}
-
-	@Test
-	public void testSaveOrUpdate() {
-		usersDao.create(user1);
-		usersDao.create(user2);
-		usersDao.create(user3);
-		usersDao.create(user4);
-
-		offersDao.saveOrUpdate(offer2);
-		offersDao.saveOrUpdate(offer3);
-		offersDao.saveOrUpdate(offer4);
-		offersDao.saveOrUpdate(offer5);
-		offersDao.saveOrUpdate(offer6);
-		offersDao.saveOrUpdate(offer7);
-
-		offer3.setText("This is updatefd offer3");
-		offersDao.saveOrUpdate(offer3);
-
-		Offer retrieveved = offersDao.getOffer(offer3.getId());
-		assertEquals("Retrieved offer should be updated", offer3, retrieveved);
-
-	}
-	@Test
-	public void testGetOfferById() {
-		
-		usersDao.create(user1);
-		usersDao.create(user2);
-		usersDao.create(user3);
-		usersDao.create(user4);
-
-		offersDao.saveOrUpdate(offer1);
-		offersDao.saveOrUpdate(offer3);
-		offersDao.saveOrUpdate(offer4);
-		offersDao.saveOrUpdate(offer5);
-		offersDao.saveOrUpdate(offer6);
-		offersDao.saveOrUpdate(offer7);
-		
-		Offer retrieved1 = offersDao.getOffer(offer1.getId());
-		assertEquals("OFfers should match", offer1,retrieved1);
-		
-		Offer retrieved2 = offersDao.getOffer(offer7.getId());
-		assertNull("Offer should not exist for not enabled user: "+user4.getUsername(), retrieved2);
+	Message message1 = new Message("Test subject 1", "Test content 1", "Isac Newton","IsacNewton@op.pl", user1.getUsername());
+		messagesDao.saveOrUpdate(message1);
 		
 		
 	}
-
-	
 
 }
