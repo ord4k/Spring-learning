@@ -58,7 +58,6 @@ public class MessageDaoTest {
 
 	Message message1 = new Message("Test subject 1", "Test content 1", "Isac Newton","IsacNewton@op.pl", user1.getUsername());
 		messagesDao.saveOrUpdate(message1);
-	
 		
 	}
 
