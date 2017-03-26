@@ -16,30 +16,31 @@
 
 			<td><c:out value="${offer.user.name}"></c:out></td>
 
-			<td><c:out value="${offer.user.email}"></c:out></td>
+			<td><a href="<c:url value='/message?uid=${offer.username}'></c:url>">contact</a></td>
 
 			<td><c:out value="${offer.text}"></c:out></td>
 
 		</tr>
 	</c:forEach>
 </table>
-<p/>
+<p />
+
 <c:choose>
 	<c:when test="${hasOffer}">
 		<a href="${pageContext.request.contextPath}/createoffer">Edit or
 			delete your current offer</a>
 	</c:when>
 	<c:otherwise>
-
 		<p>
 			<a href="${pageContext.request.contextPath}/offers">Show
 				currentoffers</a>
 		</p>
 	</c:otherwise>
-
-
-
 </c:choose>
+<p>
+	<a href="${pageContext.request.contextPath}/createoffer">Create a new offer</a>
+</p>
+
 
 
 

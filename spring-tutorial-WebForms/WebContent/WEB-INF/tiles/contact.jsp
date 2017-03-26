@@ -7,33 +7,31 @@
 
 <sf:form method="post" modelAttribute="message">
 
-<!--  flow execution kicker -->
-<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" />
-<input type="hidden" name="_eventId" value="send" />
-<input type="hidden" name="username" value="user" />
+	<!--  flow execution kicker -->
+	<input type="hidden" name="_flowExecutionKey"
+		value="${flowExecutionKey}" />
+	<input type="hidden" name="_eventId" value="send" />
+
 
 
 	<table class="formtable">
-	<tr>
+		<tr>
 			<td class="label">Your name:</td>
-			<td><sf:input class="control" path="name" 
-					type="text" /><br />
+			<td><sf:input class="control" path="name" type="text" /><br />
 				<div class="error">
 					<sf:errors path="name"></sf:errors>
 				</div></td>
 		</tr>
 		<tr>
 			<td class="label">Your email:</td>
-			<td><sf:input class="control" path="email" 
-					type="text" /><br />
+			<td><sf:input class="control" path="email" type="text" /><br />
 				<div class="error">
 					<sf:errors path="email"></sf:errors>
 				</div></td>
 		</tr>
 		<tr>
 			<td class="label">Subject:</td>
-			<td><sf:input class="control" path="subject" 
-					type="text" /><br />
+			<td><sf:input class="control" path="subject" type="text" /><br />
 				<div class="error">
 					<sf:errors path="subject"></sf:errors>
 				</div></td>

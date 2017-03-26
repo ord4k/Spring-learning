@@ -32,10 +32,7 @@ public class Message implements Serializable{
 	private String username;
 
 	public Message() {
-		this.subject = "Subject goes here";
-		this.content = "Content goes here";
-		this.name = "Name goes here";
-		this.email = "Email goes here";
+	
 
 	}
 	
