@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 
 @Entity
@@ -19,13 +23,19 @@ public class Message implements Serializable{
 	@Id
 	@GeneratedValue
 	private int id;
+	@Size(min=5, max=100)
 	private String subject;
+	@Size(min=5, max=1000)
 	private String content;
 	
 	//Name of user sending message
+	@NotBlank()
+	@Size(min = 2, max = 60)
 	private String name;
 	
 	//send an email address
+	@Email()
+	@NotBlank()
 	private String email;
 	
 	//Send message to this user
