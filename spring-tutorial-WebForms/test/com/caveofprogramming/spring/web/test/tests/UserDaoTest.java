@@ -46,7 +46,7 @@ public class UserDaoTest {
 	
 	private User user1 = new User("Michal1", "Michal_Nadolny1", "hello_there1","michal1@op.pl",true,"ROLE_USER");
 	private User user2 = new User("Michal2", "Michal_Nadolny2", "hello_there2","michal2@op.pl",true,"ROLE_ADMIN");
-	private User user3 = new User("Michal3", "Michal_Nadolny3", "hello_there3","michal3@op.pl",true,"lbierator");
+	private User user3 = new User("Michal3", "Michal_Nadolny3", "hello_there3","michal3@op.pl",true,"liberator");
 	private User user4 = new User("Michal4", "Michal_Nadolny4", "hello_there4","michal4@op.pl",false,"user");
 	
 	

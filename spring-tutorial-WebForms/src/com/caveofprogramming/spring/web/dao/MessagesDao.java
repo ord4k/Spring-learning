@@ -49,10 +49,7 @@ public class MessagesDao {
 	public List<Message> getMessages(String username) {
 
 		Criteria crit = session().createCriteria(Message.class);
-		crit.createAlias("user", "u");
-
-		crit.add(Restrictions.eq("u.enabled", true));
-		crit.add(Restrictions.eq("u.username", username));
+		crit.add(Restrictions.eq("username", username));
 
 		return crit.list();
 	}
@@ -75,9 +72,6 @@ public class MessagesDao {
 	public Message getMessage(int id) {
 		// with this approach the method returns null if message doesnt exist
 		Criteria crit = session().createCriteria(Message.class);
-		crit.createAlias("user", "u");
-
-		crit.add(Restrictions.eq("u.enabled", true));
 		crit.add(Restrictions.idEq(id));
 
 		return (Message) crit.uniqueResult();

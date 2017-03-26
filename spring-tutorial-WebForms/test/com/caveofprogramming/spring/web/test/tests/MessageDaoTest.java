@@ -2,6 +2,8 @@ package com.caveofprogramming.spring.web.test.tests;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.junit.Before;
@@ -34,12 +36,15 @@ public class MessageDaoTest {
 	@Autowired
 	private DataSource dataSource;
 
-	private User user1 = new User("Michal1", "Michal_Nadolny1", "hello_there1", "michal1@op.pl", true, "ROLE_USER");
-	private User user2 = new User("Michal2", "Michal_Nadolny2", "hello_there2", "michal2@op.pl", true, "ROLE_ADMIN");
-	private User user3 = new User("Michal3", "Michal_Nadolny3", "hello_there3", "michal3@op.pl", true, "lbierator");
-	private User user4 = new User("Michal4", "Michal_Nadolny4", "hello_there4", "michal4@op.pl", false, "user");
+	private User user1 = new User("johnwpurcell", "John Purcell", "hellothere",
+			"john@caveofprogramming.com", true, "ROLE_USER");
+	private User user2 = new User("richardhannay", "Richard Hannay",
+			"the39steps", "richard@caveofprogramming.com", true, "ROLE_ADMIN");
+	private Message message1 = new Message("Test Subject 1", "Test content 1", "Isaac Newton", "isaac@caveofprogramming.com", user1.getUsername());
+	private Message message2 = new Message("Test Subject 2", "Test content 2", "Isaac Newton", "isaac@caveofprogramming.com", user1.getUsername());
+	private Message message3 = new Message("Test Subject 3", "Test content 3", "Isaac Newton", "isaac@caveofprogramming.com", user2.getUsername());
 
-
+	
 	@Before
 	public void init() {
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
@@ -53,12 +58,69 @@ public class MessageDaoTest {
 	public void testSave() {
 		usersDao.create(user1);
 		usersDao.create(user2);
-		usersDao.create(user3);
-		usersDao.create(user4);
 
-	Message message1 = new Message("Test subject 1", "Test content 1", "Isac Newton","IsacNewton@op.pl", user1.getUsername());
+
+	
 		messagesDao.saveOrUpdate(message1);
 		
+	}
+	@Test
+	public void testSaveRetrieve() {
+		usersDao.create(user1);
+		usersDao.create(user2);
+
+		
+		messagesDao.saveOrUpdate(message1);
+		messagesDao.saveOrUpdate(message2);
+		messagesDao.saveOrUpdate(message3);
+		
+		List<Message> messages = messagesDao.getMessages(user1.getUsername());
+		assertEquals(2, messages.size());
+		
+		messages = messagesDao.getMessages(user2.getUsername());
+		assertEquals(1, messages.size());
+	}
+	
+	@Test
+	public void testRetrieveById() {
+		usersDao.create(user1);
+		usersDao.create(user2);
+		
+		messagesDao.saveOrUpdate(message1);
+		messagesDao.saveOrUpdate(message2);
+		messagesDao.saveOrUpdate(message3);
+		
+		List<Message> messages = messagesDao.getMessages(user1.getUsername());
+		
+		for(Message message: messages) {
+			Message retrieved = messagesDao.getMessage(message.getId());
+			assertEquals(message, retrieved);
+		}
+	}
+	
+	@Test
+	public void testDelete() {
+		usersDao.create(user1);
+		usersDao.create(user2);
+		
+		messagesDao.saveOrUpdate(message1);
+		messagesDao.saveOrUpdate(message2);
+		messagesDao.saveOrUpdate(message3);
+		
+		List<Message> messages = messagesDao.getMessages(user1.getUsername());
+		
+		for(Message message: messages) {
+			Message retrieved = messagesDao.getMessage(message.getId());
+			assertEquals(message, retrieved);
+		}
+		
+		Message toDelete = messages.get(1);
+		
+		assertNotNull("This message not deleted yet.", messagesDao.getMessage(toDelete.getId()));
+		
+		messagesDao.delete(toDelete.getId());
+		
+		assertNull("This message was deleted.", messagesDao.getMessage(toDelete.getId()));
 	}
 
 }
