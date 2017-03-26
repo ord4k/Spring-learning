@@ -7,18 +7,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
+
+import com.caveofprogramming.spring.web.dao.Message;
+import com.caveofprogramming.spring.web.dao.MessagesDao;
 import com.caveofprogramming.spring.web.dao.User;
 import com.caveofprogramming.spring.web.dao.UsersDao;
 
 @Service("userService")
 public class UsersService {
 	
-	private UsersDao usersDao;
-	
 	@Autowired
-	public void setOffersDao(UsersDao  usersDao) {
-		this.usersDao = usersDao;
-	}
+	private UsersDao usersDao;
+	@Autowired
+	private MessagesDao messagesDao;
+	
+
 
 	public void create(User user) {
 		usersDao.create(user);
@@ -31,5 +34,10 @@ public class UsersService {
 	@Secured("ROLE_ADMIN")
 	public List<User> getAllUsers() {
 		return usersDao.getAllUsers();
+	}
+	
+	public void sendMessage(Message message) {
+		messagesDao.saveOrUpdate(message);
+		
 	}
 }
