@@ -5,6 +5,7 @@
 
 <h2>Send message</h2>
 
+
 <sf:form method="post" modelAttribute="message">
 
 	<!--  flow execution kicker -->
@@ -17,14 +18,14 @@
 	<table class="formtable">
 		<tr>
 			<td class="label">Your name:</td>
-			<td><sf:input class="control" path="name" type="text" /><br />
+			<td><sf:input class="control" path="name" type="text" value="${fromName}" /><br />
 				<div class="error">
 					<sf:errors path="name"></sf:errors>
 				</div></td>
 		</tr>
 		<tr>
 			<td class="label">Your email:</td>
-			<td><sf:input class="control" path="email" type="text" /><br />
+			<td><sf:input class="control" path="email" type="text" value="${fromEmail}" /><br />
 				<div class="error">
 					<sf:errors path="email"></sf:errors>
 				</div></td>

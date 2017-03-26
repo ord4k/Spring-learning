@@ -65,10 +65,9 @@ public class UsersDao {
 
 	public boolean exists(String username) {
 		
-		Criteria crit = session().createCriteria(User.class);
-		crit.add(Restrictions.idEq(username));
-		User user = (User) crit.uniqueResult();
+		User user =  getUser(username);
 		return user != null;
+		
 
 		
 		
@@ -82,6 +81,13 @@ public class UsersDao {
 		return session().createQuery("from User").list();
 		//return jdbc.query("select * from users",	BeanPropertyRowMapper.newInstance(User.class));
 			
+	}
+
+	public User getUser(String username) {
+		Criteria crit = session().createCriteria(User.class);
+		crit.add(Restrictions.idEq(username));
+		return (User) crit.uniqueResult();
+		
 	}
 
 }
