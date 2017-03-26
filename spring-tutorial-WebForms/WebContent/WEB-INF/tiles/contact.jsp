@@ -9,6 +9,7 @@
 
 <!--  flow execution kicker -->
 <input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}" />
+<input type="hidden" name="_eventId" value="send" />
 
 	<table class="formtable">
 	<tr>

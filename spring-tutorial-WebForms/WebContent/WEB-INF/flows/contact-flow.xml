@@ -4,9 +4,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	
-	<var name="message" class="com.caveofprogramming.spring.web.dao.Message"/>
+
+	<var name="message" class="com.caveofprogramming.spring.web.dao.Message" />
 	<view-state id="showContactForm" model="message">
+		<transition on="send" to="messageSent">
+		</transition>
+	</view-state>
+
+	<view-state id="messageSent">
 	</view-state>
 
 </flow>
