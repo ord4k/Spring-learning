@@ -36,13 +36,11 @@ public class MessageDaoTest {
 	@Autowired
 	private DataSource dataSource;
 
-	private User user1 = new User("johnwpurcell", "John Purcell", "hellothere",
-			"john@caveofprogramming.com", true, "ROLE_USER");
-	private User user2 = new User("richardhannay", "Richard Hannay",
-			"the39steps", "richard@caveofprogramming.com", true, "ROLE_ADMIN");
-	private Message message1 = new Message("Test Subject 1", "Test content 1", "Isaac Newton", "isaac@caveofprogramming.com", user1.getUsername());
-	private Message message2 = new Message("Test Subject 2", "Test content 2", "Isaac Newton", "isaac@caveofprogramming.com", user1.getUsername());
-	private Message message3 = new Message("Test Subject 3", "Test content 3", "Isaac Newton", "isaac@caveofprogramming.com", user2.getUsername());
+	private User user1 = new User("Michal1", "Michal_Nadolny1", "hello_there1", "michal1@op.pl", true, "ROLE_USER");
+	private User user2 = new User("Michal2", "Michal_Nadolny2", "hello_there2", "michal2@op.pl", true, "ROLE_ADMIN");
+	private Message message1 = new Message("Test Subject 1", "Test content 1", "Isaac Newton", "isaac@op.com", user1.getUsername());
+	private Message message2 = new Message("Test Subject 2", "Test content 2", "Isaac Newton", "isaac@op.com", user1.getUsername());
+	private Message message3 = new Message("Test Subject 3", "Test content 3", "Isaac Newton", "isaac@op.com", user2.getUsername());
 
 	
 	@Before
